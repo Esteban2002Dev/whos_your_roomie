@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto my-8">
+        <h1 class="text-4xl font-bold text-center">Encuentra a tu Roomie Perfecto</h1>
+        <p class="text-center text-gray-600 mt-4">Responde unas cuantas preguntas y te emparejaremos con tu compañero de cuarto ideal según tus preferencias y nuestra base de datos.</p>
+
+        <div class="mt-8 flex justify-center">
+            <a href="/roomie/form" class="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-600">Empezar</a>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{%endblock %}
