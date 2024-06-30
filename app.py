@@ -18,5 +18,14 @@ def home():
 
 @app.route("/roomie/form")
 def user_form():
-    print(Roomies.get_data())
     return render_template("pages/form.html")
+
+@app.route("/roomie/data")
+def roomie_data():
+    roomies = Roomies()
+    data = roomies.get_data()
+    return render_template("pages/information.html", data=data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
