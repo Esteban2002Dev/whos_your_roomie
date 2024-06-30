@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\Escuela\DGS-901\Extraccion de con. de bases de datos\python\analisis\.venv
+set VIRTUAL_ENV=C:\Users\luich\Documents\Escuela\Escuela\DGS-901\EXTRACCION DE CONOCIMIENTOS DE BD\whos_your_roomie\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 

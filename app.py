@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from controllers.roomies import Roomies
 
 app = Flask(__name__)
 
@@ -17,4 +18,5 @@ def home():
 
 @app.route("/roomie/form")
 def user_form():
+    print(Roomies.get_data())
     return render_template("pages/form.html")
