@@ -6,7 +6,22 @@ class Roomies:
     def __init__(self, data_file='./uploads/roomies.csv'):
         self.data_file = data_file
         self.df = pd.read_csv(self.data_file)
+        self.translate_values()
 
+    def translate_values(self):
+        bool_columns = ['¿Fumas?\r\n(1=si/0=No)', '¿Tienes mascotas? (1=Sí/0=No)', '¿Te gusta cocinar? (1=Sí/2=No)']
+        choice_columns = ['¿Eres una persona madrugador/a o noctámbulo/o?\r\n(1=Madrugadora/2=Noctámbula)']
+
+        for column in bool_columns:
+            self.df[column] = self.df[column].map({1: 'Sí', 0: 'No', 2: 'No'})
+
+        for column in choice_columns:
+            self.df[column] = self.df[column].apply(lambda x: str(x).strip() if pd.notnull(x) else x)
+            self.df[column] = self.df[column].map({'1': 'Madrugadora', '2': 'Noctámbula', '1,5': 'Un poco de ambos'})
+
+        self.df['genero'] = self.df['genero'].map({'F': 'Femenino', 'M': 'Masculino'})
+        return self.df
+    
     def get_data(self):
         return self.df.to_dict(orient='records')
     

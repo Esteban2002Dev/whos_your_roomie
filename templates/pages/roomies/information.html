@@ -13,9 +13,28 @@
                     <table class="min-w-full bg-white">
                         <thead>
                             <tr>
-                                {% for key in data[0].keys() %}
-                                    <th class="py-2 px-4 border-b">{{ key }}</th>
-                                {% endfor %}
+                                <th class="py-2 px-4 border-b">Id</th>
+                                <th class="py-2 px-4 border-b">Nombre</th>
+                                <th class="py-2 px-4 border-b">Edad</th>
+                                <th class="py-2 px-4 border-b">Genero</th>
+                                <th class="py-2 px-4 border-b">Con que frecuencia limpias tu espacio (donde 1 es muy raro y 10 es muy frecuente)</th>
+                                <th class="py-2 px-4 border-b">tolerancia tienes al ruido (1 es muy baja tolerancia y 10 es muy alta tolerancia)</th>
+                                <th class="py-2 px-4 border-b">Fuma?</th>
+                                <th class="py-2 px-4 border-b">Le importa si tu roomie fuma?</th>
+                                <th class="py-2 px-4 border-b">Tiene mascotas</th>
+                                <th class="py-2 px-4 border-b">Le gustan las mascotas</th>
+                                <th class="py-2 px-4 border-b">Es una persona madrugador/a o noctámbulo/o</th>
+                                <th class="py-2 px-4 border-b">Le gusta cocinar</th>
+                                <th class="py-2 px-4 border-b">Con qué frecuencia cocina en casa</th>
+                                <th class="py-2 px-4 border-b">Qué tipo de música escucha</th>
+                                <th class="py-2 px-4 border-b">Con qué frecuencia escucha música en casa</th>
+                                <th class="py-2 px-4 border-b">Hobbie</th>
+                                <th class="py-2 px-4 border-b">Prefiere pasar tiempo en casa o fuera de casa (1 es fuera de casa y 10 es en casa)</th>
+                                <th class="py-2 px-4 border-b">Qué tan sociable es (1 es muy solitario y 10 es muy sociable)</th>
+                                <th class="py-2 px-4 border-b">Con qué frecuencia invita a amigos o familiares a casa (1 es muy raro y 10 es muy frecuente)</th>
+                                <th class="py-2 px-4 border-b">Le importa si su roomie invita a amigos o familiares (1 es no tolerancia y 10 es total tolerancia)</th>
+                                <th class="py-2 px-4 border-b">Qué tan importante es para el tener un espacio silencioso para trabajar o estudiar (1 es nada importante y 10 es muy importante)</th>
+                                <th class="py-2 px-4 border-b">Le gustan las fiestas o prefiere ambientes tranquilos (1 es tranquilo y 10 es fiestas)</th>
                                 <th class="py-2 px-4 border-b">Acciones</th>
                             </tr>
                         </thead>
@@ -23,7 +42,7 @@
                             {% for row in data %}
                                 <tr class="hover:bg-zinc-100">
                                     {% for value in row.values() %}
-                                    <td class="py-2 px-4 border-b">{{ value }}</td>
+                                        <td class="py-2 px-4 border-b {{ 'text-red-500' if value == 'Sí' else 'text-emerald-500' if value == 'No' else '' }}">{{ value }}</td>
                                     {% endfor %}
                                     <td class="py-2 px-4 border-b">
                                         <a type="button" href="{{ url_for('get_roomie_by_id', id=row['id_usuario']) }}"
@@ -44,40 +63,4 @@
             {% endif %}
         </div>
     </div>
-    <!-- <div class="container bg-slate-100 w-auto h-auto p-6 overflow-hidden rounded-2xl shadow-xl">
-        {% if data %}
-            <div class="container bg-white overflow-y-auto rounded-xl">
-                <table class="min-w-full">
-                    <thead>
-                        <tr>
-                            {% for key in data[0].keys() %}
-                                <th class="py-2 px-4 border-b">{{ key }}</th>
-                            {% endfor %}
-                            <th class="py-2 px-4 border-b">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for row in data %}
-                            <tr class="hover:bg-zinc-100">
-                                {% for value in row.values() %}
-                                <td class="py-2 px-4 border-b">{{ value }}</td>
-                                {% endfor %}
-                                <td class="py-2 px-4 border-b">
-                                    <a type="button" href="{{ url_for('get_roomie_by_id', id=row['id_usuario']) }}"
-                                    class="inline-flex text-white bg-emerald-500 border-0 py-2 px-2 focus:outline-none hover:bg-emerald-600 rounded text-lg">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                                            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                            <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
-                                        </svg>                                              
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% else %}
-            <p>No hay data disponible.</p>
-        {% endif %}
-    </div> -->
 {% endblock %}
