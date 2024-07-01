@@ -800,6 +800,14 @@ video {
   height: 1rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
+.h-3\/4 {
+  height: 75%;
+}
+
 .max-h-full {
   max-height: 100%;
 }

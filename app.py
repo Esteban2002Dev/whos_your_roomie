@@ -14,7 +14,7 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("pages/home.html")
+    return render_template("pages/landing/home.html")
 
 @app.route("/roomie/form")
 def user_form():
