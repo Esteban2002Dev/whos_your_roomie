@@ -1,0 +1,56 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Roomie {{roomie.nombre}}{% endblock %}
+
+{% block content %}
+    <div class="container mb-4 p-4">
+        <div class="flex justify-between">
+            <h1 class="font-bold text-2xl">{{roomie.id_usuario}}° Roomie: <span class="text-zinc-700 font-semibold">{{roomie.nombre}} </span></h1>
+            <p>Edad: <span class="text-zinc-700 font-semibold">{{roomie.edad}} años</span>.</p>
+        </div>
+        <div class="flex justify-between">
+            <p>Forma de trabajo: 
+                <span class="text-zinc-700 font-semibold">
+                    {% if roomie['¿Eres una persona madrugador/a o noctámbulo/o?\n(1=Madrugadora/2=Noctámbula)'] == '1' %}
+                        Madrugador
+                    {% elif roomie['¿Eres una persona madrugador/a o noctámbulo/o?\n(1=Madrugadora/2=Noctámbula)'] == '2' %}
+                        Noctambulo
+                    {% else %}
+                        Entre madrugador y noctambulo
+                    {% endif %}
+                </span>
+            </p>
+            {% if roomie.genero == 'M' %}
+                <p>Genero: <span class="text-zinc-700 font-semibold">Masculino</span>.</p>
+            {% elif roomie.genero == 'F'  %}
+                <p>Genero: <span class="text-zinc-700 font-semibold">Femenino</span>.</p>
+            {% else %}
+                <p>Genero: <span class="text-zinc-700 font-semibold">otro</span>.</p>
+            {% endif %}
+        </div>
+
+        <p>Hobbie: <span class="text-zinc-700 font-semibold">{{roomie['hobbies (Especificar)']}} </span></p>
+        <p>Genero musical fav: <span class="text-zinc-700 font-semibold">{{roomie['¿Qué tipo de música escuchas?  (Especificar)']}}</span>.</p>
+        <p>Es chef: <span class="text-zinc-700 font-semibold">{{ 'Si' if roomie['¿Te gusta cocinar? (1=Sí/2=No)'] == 1 else 'No' }}</span></p>
+        <p>Fuma: <span class="text-zinc-700 font-semibold">{{ 'Si' if roomie['¿Fumas?\n(1=si/0=No)'] == 1 else 'No' }}</span></p>
+        <p>{{ 'Tiene mascotas' if roomie['¿Tienes mascotas? (1=Sí/0=No)'] == 1 else 'No tiene mascotas' }}</p>
+        <hr>
+    </div>
+
+    <div class="container bg-zinc-100 shadow-xl rounded-xl p-4">
+        <div class="grid grid-cols-12 gap-4">
+            {% for key, value in roomie.items() %}
+            {% if key not in 
+                ['id_usuario', 'nombre', 'edad', 'genero', 
+                '¿Eres una persona madrugador/a o noctámbulo/o?\n(1=Madrugadora/2=Noctámbula)', 
+                'hobbies (Especificar)', '¿Qué tipo de música escuchas?  (Especificar)', 
+                '¿Tienes mascotas? (1=Sí/0=No)', '¿Te gusta cocinar? (1=Sí/2=No)', '¿Fumas?\n(1=si/0=No)'] %}
+                <div class="col-span-6 bg-white p-4 shadow-xl rounded-lg text-center">
+                    {% if key in chart_paths %}
+                        <img src="{{ url_for('static', filename=chart_paths[key].split('static/')[-1]) }}" alt="{{ key }} chart">
+                    {% endif %}    
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

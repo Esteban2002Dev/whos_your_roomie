@@ -5,7 +5,46 @@
     <div class="container p-4 mb-6">
         <h1 class="text-2xl font-bold text-center">Posibles roomies</h1>
     </div>
-    <div class="container bg-slate-100 w-auto h-auto p-6 overflow-hidden rounded-2xl shadow-xl">
+
+    <div class="container w-auto h-screen overflow-y-hidden overflow-x-hidden">
+        <div class="h-2/3 w-full bg-slate-100 p-4 overflow-scroll">
+            {% if data %}
+                <div class="container w-full rounded-xl">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr>
+                                {% for key in data[0].keys() %}
+                                    <th class="py-2 px-4 border-b">{{ key }}</th>
+                                {% endfor %}
+                                <th class="py-2 px-4 border-b">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                                <tr class="hover:bg-zinc-100">
+                                    {% for value in row.values() %}
+                                    <td class="py-2 px-4 border-b">{{ value }}</td>
+                                    {% endfor %}
+                                    <td class="py-2 px-4 border-b">
+                                        <a type="button" href="{{ url_for('get_roomie_by_id', id=row['id_usuario']) }}"
+                                        class="inline-flex text-white bg-emerald-500 border-0 py-2 px-2 focus:outline-none hover:bg-emerald-600 rounded text-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                                <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p>No hay data disponible.</p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- <div class="container bg-slate-100 w-auto h-auto p-6 overflow-hidden rounded-2xl shadow-xl">
         {% if data %}
             <div class="container bg-white overflow-y-auto rounded-xl">
                 <table class="min-w-full">
@@ -24,12 +63,13 @@
                                 <td class="py-2 px-4 border-b">{{ value }}</td>
                                 {% endfor %}
                                 <td class="py-2 px-4 border-b">
-                                    <button type="button" class="inline-flex text-white bg-emerald-500 border-0 py-2 px-2 focus:outline-none hover:bg-emerald-600 rounded text-lg">
+                                    <a type="button" href="{{ url_for('get_roomie_by_id', id=row['id_usuario']) }}"
+                                    class="inline-flex text-white bg-emerald-500 border-0 py-2 px-2 focus:outline-none hover:bg-emerald-600 rounded text-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                                             <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
                                         </svg>                                              
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -39,5 +79,5 @@
         {% else %}
             <p>No hay data disponible.</p>
         {% endif %}
-    </div>
+    </div> -->
 {% endblock %}

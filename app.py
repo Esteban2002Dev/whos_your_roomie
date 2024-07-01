@@ -26,6 +26,17 @@ def roomie_data():
     data = roomies.get_data()
     return render_template("pages/roomies/information.html", data=data)
 
+@app.route("/roomie/data/<id>")
+def get_roomie_by_id(id=None):
+    print(id, '=== ID ===')
+    roomies = Roomies()
+    roomie = roomies.get_roomie_by_id(id)
+    if roomie:
+        chart_paths = roomies.generate_charts(roomie)
+    else:
+        chart_paths = {}
+    return render_template("pages/roomies/roomie_details.html", roomie=roomie, chart_paths=chart_paths)
+
 if __name__ == "__main__":
     app.run(debug=True)
 
